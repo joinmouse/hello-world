@@ -1,0 +1,55 @@
+<html>
+<style>
+	.ct{
+		width: 910px;
+		margin: auto;
+	}
+	.main{
+		float: left;
+		width: 450px;
+		height: 300px;
+		border: 1px solid #ccc;
+	}
+	.main input{
+		margin: 20px;
+		width: 200px;
+	}
+	.iframe{
+		float: right;
+	}
+	iframe{
+		width: 450px;
+		height: 300px;
+		border: 1px dashed #ccc;
+	}
+</style>
+
+<div class="ct">
+	<h1>postMessage实现跨域</h1>
+	<div class="main">
+		<input type="text" placeholder="postMessage跨域">
+	</div>
+
+	<iframe src="http://qi.com/b.html" frameborder="0" ></iframe>
+
+</div>
+
+
+<script>
+//URL: http://wu.com:8080/a.html
+$('.main input').addEventListener('input', function(){
+	console.log(this.value);
+//发送this.value到全windows视窗下
+	window.frames[0].postMessage(this.value,'*');
+})
+//windows的事件监听，将e.data赋给input标签内的值
+window.addEventListener('message',function(e) {
+		$('.main input').value = e.data
+    console.log(e.data);
+});
+
+function $(id){
+	return document.querySelector(id);
+}
+</script>
+</html>

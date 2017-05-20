@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+<style>
+  html,body {
+    margin: 0;
+  }
+  #ipt {
+    margin: 20px;
+    width: 200px;
+  }
+</style>
+</head>
+<body>
+  <input id="ipt" type="text" placeholder = "跨域">
+ 
+  <script>
+  //URL:http://qi.a.com/b.html
+
+  var ipt = document.querySelector('#ipt');
+  ipt.addEventListener('input', function(){
+	  window.parent.document.querySelector('input').value = this.value;
+})
+document.domain = 'a.com';
+  </script>
+</body>
+</html>
